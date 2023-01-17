@@ -35,7 +35,7 @@
                   <?php
 
                   $atributos = array(
-                    'namne' => 'form_core'
+                    'name' => 'form_core'
                     //'class' => 'minhaclasse',
                     //'id' => 'myform'
                   );
