@@ -41,6 +41,8 @@ class Core_model extends CI_Model{
                 $this->session->set_userdata('last_id', $this->db->insert_id());
             }
 
+            $this->db->insert($tabela, $data);
+
             if ($this->db->affected_rows() > 0){
                 $this->session->set_flashdata('sucesso', 'Dados salvos com sucesso!');
             } else {
@@ -69,11 +71,12 @@ class Core_model extends CI_Model{
 
     public function delete($tabela = NULL, $condicoes = NULL) {
 
-        if($tabela && $this->db->table_exists($tabela) && is_array($data) && is_array($condicoes)){
+        if ($tabela && $this->db->table_exists($tabela) && is_array($condicoes)) {
 
-            if($this->db->delete($tabela, $condicoes)){
+            if ($this->db->delete($tabela, $condicoes)) {
+                
                 $this->session->set_flashdata('sucesso', 'Registro excluido com sucesso!');
-            }else{
+            } else {
                 $this->session->set_flashdata('error', 'Não foi possivel excluir os dados!');
             }
         } else {
