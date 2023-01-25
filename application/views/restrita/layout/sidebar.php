@@ -24,7 +24,7 @@
                   data-feather="package"></i><span>Categoriais</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="<?php echo base_url('restrita/master');  ?>">Categorias PAI</a></li>
-                <li><a class="nav-link" href="<?php echo base_url('restrita/master');  ?>">Categorias FILHA</a></li>
+                <li><a class="nav-link" href="<?php echo base_url('restrita/categorias');  ?>">Categorias FILHA</a></li>
               </ul>
             </li>
 

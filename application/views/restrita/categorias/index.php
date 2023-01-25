@@ -13,7 +13,7 @@
             <php 
               
               echo '<pre>';
-              print_r($master);
+              print_r($categorias);
               echo '</pre>';
               >
             -->
@@ -65,7 +65,7 @@
                 <div class="card">
                   <div class="card-header d-block">
                     <h4><?php echo $titulo; ?></h4>
-                    <a class="btn btn-primary float-right" href=" <?php  echo base_url('restrita/master/core');  ?>">Cadastrar</a>
+                    <a class="btn btn-primary float-right" href=" <?php  echo base_url('restrita/categorias/core');  ?>">Cadastrar</a>
                   </div>
                   
                   <div class="card-body">
@@ -77,31 +77,33 @@
                             <th class="text-center">
                               #
                             </th>
-                            <th>Nome da categoria pai</th>
-                            <th>Meta link da categoria pai &nbsp;<i data-feather="link-2" class="text-info"></i></th>
+                            <th>Nome da categoria</th>
+                            <th>Meta link da categoria &nbsp;<i data-feather="link-2" class="text-info"></i></th>
                             <th>Data cadastro</th>
+                            <th>Categoria PAI</th>
                             <th>Ativa</th>
                             <th class="nosort">Ação</th>
                           </tr>
                         </thead>
                         <tbody>
 
-                        <?php  foreach($master as $pai) : ?>
+                        <?php  foreach($categorias as $categoria) : ?>
 
                           <tr>
 
                           
 
-                            <td> <?php echo $pai->categoria_pai_id; ?> </td>
-                            <td> <?php echo $pai->categoria_pai_nome; ?> </td>
-                            <td> <?php echo $pai->categoria_pai_meta_link; ?> </td>
-                            <td> <?php echo formata_data_banco_com_hora($pai->categoria_pai_data_criacao); ?> </td>
-                            <td> <?php echo ($pai->categoria_pai_ativa == 1 ? '<span class="badge badge-success">Ativo</span>' : '<span class="badge badge-danger">Inativo</span>'); ?> </td>
+                            <td> <?php echo $categoria->categoria_id; ?> </td>
+                            <td> <?php echo $categoria->categoria_nome; ?> </td>
+                            <td> <?php echo $categoria->categoria_meta_link; ?> </td>
+                            <td> <?php echo formata_data_banco_com_hora($categoria->categoria_data_criacao); ?> </td>
+                            <td> <?php echo $categoria->categoria_pai_id; ?></td>
+                            <td> <?php echo ($categoria->categoria_ativa == 1 ? '<span class="badge badge-success">Ativo</span>' : '<span class="badge badge-danger">Inativo</span>'); ?> </td>
 
 
                           <td>
-                          <a href="<?php echo base_url('restrita/master/core/' . $pai->categoria_pai_id); ?> " class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i> Editar</a>
-                          <a href="<?php echo base_url('restrita/master/delete/' . $pai->categoria_pai_id); ?> " class="btn btn-icon icon-left btn-danger delete" data-confirm="Tem certeza da exclusão?"><i class="fas fa-times"> Deletar</i></a> 
+                          <a href="<?php echo base_url('restrita/categorias/core/' . $categoria->categoria_id); ?> " class="btn btn-icon icon-left btn-primary"><i class="far fa-edit"></i> Editar</a>
+                          <a href="<?php echo base_url('restrita/categorias/delete/' . $categoria->categoria_id); ?> " class="btn btn-icon icon-left btn-danger delete" data-confirm="Tem certeza da exclusão?"><i class="fas fa-times"> Deletar</i></a> 
                           </td>
                             
 

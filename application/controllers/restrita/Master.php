@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('Ação não permitida');
 
 class Master extends CI_Controller {
 
-
+    // sessao logada
     public function __construct() {
 
         parent:: __construct();
@@ -14,6 +14,7 @@ class Master extends CI_Controller {
                 redirect('restrita/login');
             }
     }
+
     // view mostra dados do banco de dados, na pagina principal
     public function index() {
             // array associativo
@@ -41,6 +42,7 @@ class Master extends CI_Controller {
            $this->load->view('restrita/master/index');
            $this->load->view('restrita/layout/footer');
     }
+
     // core (Cadastrar e editar)
     public function core($categoria_pai_id = NULL) {
 
@@ -96,13 +98,21 @@ class Master extends CI_Controller {
 
             if($this->form_validation->run()) {
 
-                                /*
-                            if($this->input->post('categoria_pai_ativa') == 0) {
+                                
+                    if($this->input->post('categoria_pai_ativa') == 0) {
 
-                                // Proibir desativação
+                        // Proibir desativação
 
-                            }
-                                */
+                        if($this->core_model->get_by_id('categorias', array('categoria_pai_id' => $categoria_pai_id))){
+                            
+                            $this->session->set_flashdata('erro', 'Categoria pai não pode ser desativada pois está vinculada a uma categoria filha');
+                            redirect('restrita/master');
+                            
+
+                        }
+
+                    }
+                                
                
                 $data = elements(
 
@@ -146,6 +156,7 @@ class Master extends CI_Controller {
 
         
     }
+
     //callback (Validar existencias)
     public function valida_nome_categoria($categoria_pai_nome) {
 
@@ -169,6 +180,7 @@ class Master extends CI_Controller {
             }
         }
     }
+    
     // deletar dados
     public function delete($categoria_pai_id = NULL) {
 
